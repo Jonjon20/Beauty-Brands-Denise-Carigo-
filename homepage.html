@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Top 10 Beauty Brands</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <style>
+    body {
+      background-color: #fff8f9;
+      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav {
+      background-color: #ffe4ec;
+    }
+    main.container {
+      padding: 3rem 1rem;
+    }
+    figure img {
+      border-radius: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li><strong>Top 10 Beauty Brands</strong></li>
+    </ul>
+    <ul>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" role="button">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <div class="grid" id="products">
+      <section>
+        <hgroup>
+          <h2>Explore the World's Leading Beauty Brands</h2>
+          <h3>Luxury, Innovation, and Timeless Beauty</h3>
+        </hgroup>
+        <p>Discover the top 10 beauty brands shaping the global beauty industry — from skincare pioneers to makeup icons, each delivering excellence in innovation, quality, and elegance.</p>
+
+        <figure>
+          <img src="https://images.unsplash.com/photo-1596464716121-9f2c8a0f7f4a?auto=format&fit=crop&w=1200&q=80" alt="Beauty products collection" />
+          <figcaption><a href="https://unsplash.com" target="_blank">Images via Unsplash</a></figcaption>
+        </figure>
+
+        <h3>Top 10 Beauty Brands</h3>
+        <p>1. Estée Lauder<br>2. L’Oréal Paris<br>3. Chanel Beauty<br>4. Dior Beauty<br>5. Fenty Beauty<br>6. MAC Cosmetics<br>7. Clinique<br>8. NARS<br>9. Glossier<br>10. Charlotte Tilbury</p>
+
+        <h3>Why These Brands?</h3>
+        <p>Each of these brands has revolutionized beauty standards, introducing products that blend science, art, and individuality. From sustainable skincare to inclusive shade ranges, they continue to redefine the essence of beauty worldwide.</p>
+      </section>
+    </div>
+  </main>
+
+  <section aria-label="Subscribe example" id="contact">
+    <div class="container">
+      <article>
+        <hgroup>
+          <h2>Stay Updated</h2>
+          <h3>Subscribe to get the latest trends and news</h3>
+        </hgroup>
+        <form class="grid">
+          <input type="text" id="firstname" name="firstname" placeholder="Your Name" aria-label="Your Name" required />
+          <input type="email" id="email" name="email" placeholder="Email Address" aria-label="Email Address" required />
+          <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <footer class="container">
+    <small>
+      <a href="#about" id="about">About</a> • 
+      <a href="#contact">Contact</a>
+    </small>
+  </footer>
+</body>
+</html>

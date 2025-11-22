@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Beauty Brands</title>
+	
+    <style>
+        /* General Styles */
+        body {
+            font-family: Copperplate, Brush script;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent overlay for readability */
+            z-index: -1;
+        }
+        a { 
+           text-decoration: none; 
+           color: inherit; 
+           transition: color 0.3s; 
+        }
+   
+        a:hover { 
+           color: #d63384; 
+        }
+        h1, h2, h3 { 
+	color: #d63384; 
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+	}
+
+        .container {
+	 max-width: 1200px; 
+
+	margin: 0 auto; 
+	padding: 15px; 
+	position: relative; 
+	z-index: 1; 
+	}
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        nav h1 { margin: 0; font-size: 1.8em; }
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li { margin-left: 20px; }
+        nav ul li a {
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        nav ul li a:hover { background: #f8f9fa; transform: scale(1.05); }
+
+        /* Sections */
+        section {
+            padding: 60px 0;
+            min-height: 100vh;
+            position: relative;
+        }
+        #home {
+            background: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            background-image: url('Welcome.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.5);
+            z-index: -1;
+        }
+        #products {
+            background: rgba(248, 249, 250, 0.9);
+            background-image: url('Products.jpg ');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        #products::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(248, 249, 250, 0.8);
+            z-index: -1;
+        }
+        #contacts {
+            background: rgba(255, 255, 255, 0.9);
+            background-image: url('Contact us.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        #contacts::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: -1;
+        }
+
+        /* Home Section */
+        #home .intro { max-width: 800px; margin: 0 auto; font-size: 1.2em; animation: fadeIn 2s ease-in; }
+
+        /* Products Section */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .brand-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: slideUp 1s ease-out;
+        }
+        .brand-card:hover { transform: translateY(-10px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+        .brand-image { width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s; }
+        .brand-image:hover { transform: scale(1.05); }
+        .brand-content { padding: 20px; }
+        .brand-name { font-size: 1.5em; margin-bottom: 10px; }
+        .brand-desc { margin-bottom: 15px; }
+        .product { font-weight: bold; color: #495057; }
+        .price { color: #28a745; font-size: 1.2em; }
+
+        /* Contacts Section */
+        #contacts form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(248, 249, 250, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: fadeIn 2s ease-in;
+        }
+        form label { display: block; margin-bottom: 5px; font-weight: bold; }
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        form input:focus, form textarea:focus { border-color: #d63384; outline: none; }
+        form button {
+            background: linear-gradient(45deg, #d63384, #c0267a);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s, transform 0.3s;
+        }
+        form button:hover { background: linear-gradient(45deg, #c0267a, #a61e69); transform: scale(1.05); }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(51, 51, 51, 0.9);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav .container { flex-direction: column; }
+            nav ul { margin-top: 10px; }
+            .brand-grid { grid-template-columns: 1fr; }
+        }
+
+/* --- IMAGE MODAL VIEWER --- */
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 40px 20px;
+}
+
+.image-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 25px #ffffffaa;
+    animation: zoomIn 0.3s ease;
+}
+
+.image-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 45px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.6); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}   
+ </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <h1>Beauty Brands</h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#contacts">Contacts</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="container">
+            <h1>Welcome to the Top 10 Beauty Brands in the World</h1>
+            <div class="intro">
+                <p><h4>Discover the most iconic and influential beauty brands globally, renowned for their innovation, quality, and timeless appeal. From luxury icons to accessible essentials, these brands set trends and empower beauty enthusiasts worldwide. Explore our curated list of top brands, complete with featured products, stunning visuals, and pricing details.</h4></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="products">
+        <div class="container">
+            <h2><center>Top 10 Beauty Brands</center></h2>
+            <div class="brand-grid">
+                <div class="brand-card">
+		  <img src="chanel.jpg"alt="Chanel" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">1. Chanel</h3>
+                        <p class="brand-desc">A French luxury brand synonymous with elegance, known for timeless fragrances and high-end cosmetics.</p>
+                        <p class="product">Chanel No. 5 Perfume (100ml)</p>
+                        <p class="price">$199.95</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <img src="Dior.jpg" alt="Dior" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">2. Dior</h3>
+                        <p class="brand-desc">Iconic for makeup and skincare, blending fashion with beauty for a sophisticated look.</p>
+                        <p class="product">Dior Addict Lip Glow Balm</p>
+                        <p class="price">$42</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                     <img src="Estée Lauder.jpg" alt="Estée Lauder" class="brand-image">
+
+                    <div class="brand-content">
+                        <h3 class="brand-name">3. Estée Lauder</h3>
+                        <p class="brand-desc">Pioneers in skincare and anti-aging, offering premium products for all skin types.</p>
+                        <p class="product">Estée Lauder Advanced Night Repair Serum (50ml)</p>
+                        <p class="price">$20</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <img src="L'Oréal.jpg" alt="L'Oréal" class="brand-image">
+
+                    <div class="brand-content">
+                        <h3 class="brand-name">4. L'Oréal</h3>
+                        <p class="brand-desc">A global giant in hair care, makeup, and skincare, accessible and innovative.</p>
+                        <p class="product">L'Oréal Paris Revitalift Moisturizer (50ml)</p>
+                        <p class="price">$27.99</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <img src="Maybelline.jpg" alt="Maybelline" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">5. Maybelline</h3>
+                        <p class="brand-desc">Affordable makeup essentials, famous for mascaras and foundations that deliver professional results.</p>
+                        <p class="product">Maybelline Lash Sensational Mascara</p>
+                        <p class="price">$13.99</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <img src="Nars.jpg" alt="Nars" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">6. NARS</h3>
+                        <p class="brand-desc">Known for bold, artistic makeup and skincare with a focus on natural radiance.</p>
+                        <p class="product">NARS Radiant Creamy Concealer</p>
+                        <p class="price">$34</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                   <img src="Fenty.jpg" alt="Fenty" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">7. Fenty Beauty</h3>
+                        <p class="brand-desc">Inclusive beauty by Rihanna, offering shades for all skin tones and innovative formulas.</p>
+                        <p class="product">Fenty Beauty Pro Filt'r Soft Matte Longwear Foundation</p>
+                        <p class="price">$40</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <img src="The Ordinary.jpg" alt="The Ordinary" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">8. The Ordinary</h3>
+                        <p class="brand-desc">Budget-friendly, science-backed skincare with effective, no-frills products.</p>
+                        <p class="product">The Ordinary Hyaluronic Acid 2% + B5 Serum (30ml)</p>
+                        <p class="price">$7.62</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <img src="Clinique.jpg" alt="Clinique" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">9. Clinique</h3>
+                        <p class="brand-desc">Dermatologist-developed skincare and makeup, emphasizing allergy-tested, gentle formulas.</p>
+                        <p class="product">Clinique Dramatically Different Moisturizing Gel</p>
+                        <p class="price">$17.00</p>
+                    </div>
+                </div>
+                <div class="brand-card">
+                    <img src="Bobbi.jpg" alt="Bobbi Brown" class="brand-image">
+                    <div class="brand-content">
+                        <h3 class="brand-name">10. Bobbi Brown</h3>
+                        <p class="brand-desc">Professional makeup tools and products for natural, everyday beauty.</p>
+                        <p class="product">Bobbi Brown Bronzer</p>
+                        <p class="price">$47.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contacts">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="#" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>BY: DENISE T. CARIGO</p>
+    </footer>
+
+<!-- MOVE MODAL HERE (Just before the script) -->
+<div id="imgModal" class="image-modal">
+    <span class="image-modal-close">&times;</span>
+    <img id="imgModalContent" class="image-modal-content">
+</div>
+
+<script>
+// Select all product images
+const productImages = document.querySelectorAll(".brand-image");
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("imgModalContent");
+const modalClose = document.querySelector(".image-modal-close");
+
+// Open modal when clicking an image
+productImages.forEach(image => {
+    image.addEventListener("click", () => {
+        modal.style.display = "block";
+        modalImg.src = image.src;
+    });
+});
+
+// Close when clicking X
+modalClose.addEventListener("click", () => {
+    modal.style.display = "none";
+});
+
+// Close when clicking outside the image
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.style.display = "none";
+});
+</script>
+</body>
+
+
+</html>
